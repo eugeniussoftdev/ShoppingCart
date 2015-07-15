@@ -1,0 +1,31 @@
+	body{
+		background-color: #B085AC;
+	}
+	.container{
+		background-color: #232323;
+		color: white;
+	}
+	.product:hover{
+	
+	background-color: #300c2f;
+	
+	}
+	.bar{
+		margin-top: 25px;
+	}
+	input[type="button"] {
+		color: black;
+	}
+	img{
+		width: 150px;
+	}
+	li{
+		list-style: none;
+	}
+	.basket{
+		background-color: #9a9a9a;
+		width: 150px;
+		height: 150px;
+		position: fixed;
+		top: 150px;
+	}

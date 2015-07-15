@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<style>
+	.test{
+		background-color: green;
+	}
+</style>
+</head>
+<body>
+	<div class="test">
+		
+<my-progress value="20" max="100"></my-progress>
+	</div>
+
+</body>
+<script>
+	
+angular.module('app',[])
+.directive('myProgress',function(){
+
+	return{
+		template: "<div></div>",
+		scope: {
+			value: "=",
+			max: "="
+		},
+		link: function(scope, element){
+			var outer = element[0],
+				inner = element[0].firstChild;
+
+			outer.style.position = "relative";
+			outer.style.display = "block";
+			outer.style.height = 20+"px";
+			outer.style.background = 'red';
+
+			inner.style.position = "absolute";
+			inner.style.bottom = 0;
+			inner.style.top = 0;
+			inner.style.background = "green";
+			inner.style.width = (scope.value/scope.max * 100) + "%";
+		}
+	}
+})
+</script>
+</html>

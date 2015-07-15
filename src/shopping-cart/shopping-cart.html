@@ -1,0 +1,50 @@
+<div class="container">
+    <a ui-sref="/">HOME</a>
+    <h2>Cart</h2>
+   <div>
+       
+    <p>Items:{{cart.itemCounter}}</p>
+    <p>Total:{{cart.sum}}</p>
+   </div>
+    <div>
+    <div class="row">
+    	 <div class="col-xs-12 col-md-8 pannel">
+			 <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in cart.inCart">
+                    <td>{{item.product.name}}</td>
+                    <td>{{item.product.model}}</td>
+                    <td>{{item.quantity}} <input type="button" value="+" ng-click="cart.addItem(1, item)">
+                    <input type="button" value="-" ng-click="cart.minusOne(item)"></td>
+                    <td>{{item.product.price}}</td>
+                    <td>{{item.sum}}</td>
+                    <td><input type="button" value="Del" ng-click="cart.deleteLast(item)"></td>
+                </tr>
+                <tr>
+                	<td>Total</td>
+                	<td></td>
+                	<td></td>
+                	<td>{{cart.sum}}</td>
+                	<td></td>
+                </tr>
+            </tbody>
+
+        </table>
+    	 </div>
+    	 <div class="col-xs-12 col-md-4 pannel">
+			<ul>
+				<li><input type="button" value="Delete All" ng-click="cart.deleteAll()"></li>
+				
+			</ul>
+    	 </div>
+    </div>
+       
+    </div>
+</div>
