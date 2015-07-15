@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-app="root">
+    <div id="wrapper" class="row" ng-controller="ShoppingCartCtrl as basket">
+        <div id="buy" class="col-lg-6 pannel" ng-controller="ProductsListCtrl as buyItem">
+            <!-- phones-list -->
+            <div class="header">
+                <h2>Buy the Phone</h2>
+                <div id="filter">
+                    <input type="text" placeholder="min price">
+                    <input type="text" placeholder="max price">
+                    <input type="button" value="Find">
+                </div>
+                <div id="sort">
+                    <a href="" ng-click="buyItem.orderBy='price'">по цене</a>
+                    <a href="" ng-click="buyItem.orderBy='rating'">по рейтингу</a>
+                </div>
+            </div>
+         <!--    <ul class="list-group">
+                <li class="list-group-item" ng-repeat="phonesModel in buyItem.phonesBase | orderBy:buyItem.orderBy:revers">{{phonesModel.phonesName}}
+                    <span>{{phonesModel.price | currency}}</span>
+                    <span class="stars">   {{ phonesModel.rating | stars }}</span>
+                    <input type="number" style="width:35px" ng-model="quantity" placeholder="0">
+                    <button type="button" class="btn btn-success pull-right" ng-click="basket.buy(phonesModel, quantity)">BUY</button>
+                </li>
+            </ul> -->
+            <form action="">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i>
+                        </div>
+                        <input type="text" placeholder="Search the phone Model" class="form-control" ng-model="search">
+                    </div>
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="info">
+                            <td> <a href="" ng-click="sortType = 'phonesName'; sortReverse = !sortReverse">Phone Name</a></td>
+                            <td> <a href="" ng-click="sortType = 'rating'; sortReverse = !sortReverse">Phone rating</a></td>
+                            <td>Quantity</td>
+                            <td> <a href="" ng-click="sortType = 'price'; sortReverse = !sortReverse">Price</a></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="phonesModel in buyItem.phonesBase | orderBy:sortType:sortReverse | filter:search">
+                        <td>{{phonesModel.phonesName}}</td>
+                        <td> <span class="stars">   {{ phonesModel.rating | stars }}</span></td>
+                        <td>
+                            <input type="number" style="width:35px" ng-model="quantity" placeholder="0">
+                        </td>
+                        <td>{{phonesModel.price | currency}}</td>
+                        <td>
+                            <button type="button" class="btn btn-success pull-right" ng-click="basket.buy(phonesModel, quantity)">BUY</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="busket" class="col-lg-6 pannel">
+            <!-- shopping cart -->
+            <div class="header">
+                <h2>Shopping Cart</h2>
+                <input type="button" value="DELETE" class="btn btn-danger" ng-click="basket.del()">
+                <div>
+                    <span class="items">Items: {{basket.totalItems}}</span>
+                    <span class="total">Summ: {{basket.totalSumm | currency }}</span>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="value in basket.Chosen track by $index">
+                    {{ value.inbusket }}
+                    <span class="badge">
+                        {{ value.counter }}
+                        </span>
+                    <span>{{value.rating}}
+                        <span class="glyphicon glyphicon-remove" ng-click="basket.dellast(value.inbusket)"></span>
+                    </span>
+                </li>
+            </ul>
+             <!-- shopping cart -->
+        </div>
+    </div>
+</body>
+<script src="app.module.js"></script>
+<script src="products-list/products-list.ctrl.js"></script>
+<script src="shopping-cart/shopping-cart.ctrl.js"></script>
+<script src="fiter/rating-stars.js"></script>
+
+</html>

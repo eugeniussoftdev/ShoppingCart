@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<input type="text"> 
+<input type="button" value="pusLoc" onclick="pusLoc()">
+<input type="button" value="pusSess" onclick="pusSess()">
+<p class="inner">
+	
+</p>
+<input type="button" value="DELETE" onclick="delStore()">
+	
+</body>
+<script>
+	
+	var inp = document.querySelector("input");
+	var p = document.querySelector(".inner");
+	
+	var pusLoc = function(){
+
+		p.innerHTML = inp.value;
+		// sessionStorage.setItem('value', inp.value);
+		localStorage.setItem('value', inp.value);
+
+		console.log(inp.value);
+
+	}
+	var pusSess = function(){
+
+		p.innerHTML = inp.value;
+		// sessionStorage.setItem('value', inp.value);
+		sessionStorage.setItem('value', inp.value);
+
+		console.log(inp.value);
+
+	}
+	var delStore = function(){
+
+		localStorage.clear();
+		sessionStorage.clear();
+	}
+
+
+</script>
+</html>
